@@ -16,14 +16,28 @@ function createTaskListItemElement(task) {
   // Create the list item element
   const listItemElement = document.createElement('li');
 
+  // Create the checkbox element
+  const checkboxElement = document.createElement('input');
+  checkboxElement.type = 'checkbox';
+  checkboxElement.checked = task.completed;
+
+  // Add an event listener to the checkbox to update the task object when checked
+  checkboxElement.addEventListener('change', () => {
+    task.completed = checkboxElement.checked;
+  });
+
+  // Create the description element
   const descriptionElement = document.createElement('span');
   descriptionElement.textContent = task.description;
 
+  // Append the checkbox and description elements to the list item
+  listItemElement.appendChild(checkboxElement);
   listItemElement.appendChild(descriptionElement);
 
+  // Create a horizontal line element
   const hrElement = document.createElement('hr');
-  listItemElement.appendChild(hrElement);
 
+  listItemElement.appendChild(hrElement);
   return listItemElement;
 }
 
@@ -52,11 +66,9 @@ form.addEventListener('submit', (event) => {
   newTask.value = '';
 });
 
-// Render the list of tasks
 function renderTaskList() {
   taskList.innerHTML = '';
 
-  // Sort the tasks by index and create a DOM element for each task
   tasks
     .sort((task1, task2) => task1.index - task2.index)
     .forEach((task) => {
