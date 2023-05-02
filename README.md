@@ -65,7 +65,7 @@
 ### Key Features <a name="key-features"></a>
 
 - User can add tasks to a list
-- Render lists dynamically on page load 
+- Lists are rendered dynamically on page load 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
