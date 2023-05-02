@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300;1,400&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #f6f6f6;
+}
+
+.container {
+  width: 50%;
+  margin: 8rem auto 0;
+  padding: 2rem;
+  background: #f9f9f9;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  color: #999;
+  font-size: 1rem;
+  padding: 1rem 0;
+}
+
+hr {
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+  color: #999;
+  font-weight: 400;
+}
+
+form {
+  display: flex;
+  margin: 20px;
+}
+
+#new-task {
+  border: none;
+}
+
+input[type='text'] {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  margin-left: -1.3rem;
+}
+
+#new-task::placeholder {
+  color: #999;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+button[type='submit'] {
+  padding: 10px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  color: white;
+  cursor: pointer;
+}
+
+span {
+  margin-left: 10px;
+}
+
+input[type='checkbox'] {
+  margin-right: 10px;
+}
+
+input[type='checkbox']:checked + span {
+  text-decoration: line-through;
+}
+
+p {
+  text-align: center;
+  margin: 2rem auto 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #999;
+}
