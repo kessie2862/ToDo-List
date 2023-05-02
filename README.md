@@ -24,9 +24,9 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [AwesomeBooksES6] <a name="about-project"></a>
+# 📖 [ToDo-List] <a name="about-project"></a>
 
-**[ToDo-List]** is a basic webpage that
+**[ToDo-List]** is a basic webpage built using webpack and served by a webpack dev server that allows a user to add and remove tasks to and from a list.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -64,14 +64,8 @@
 
 ### Key Features <a name="key-features"></a>
 
-- User data is stored in the Local Storage
-- User data can also be retrieved from the Local Storage
-
-<!-- LIVE DEMO LINK -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- [Live Demo Link](https://kessie2862.github.io/AwesomeBooksES6/)
+- User can add tasks to a list
+- Render lists dynamically on page load 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,7 +121,8 @@ Run the index.html with your preferred browser.
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[Add dynamic navigation and improve the UI]**
+- [ ] **[Store user data Local Storage]**
+- [ ] **[Delete and mark tasks as completed]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
