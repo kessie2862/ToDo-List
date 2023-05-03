@@ -4,18 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
+    />
     <title>ToDo-List</title>
-  <script defer src="bundle.a677a772e94f0fb6e1e0.js"></script></head>
+  <script defer src="bundle.39ed3d89ac598f4d8b6b.js"></script></head>
   <body>
     <div class="container">
-      <h4>Today's To Do</h4>
+      <div class="title">
+        <h4>Today's ToDo</h4>
+        <i class="uil uil-redo"></i>
+      </div>
       <hr />
       <form>
         <input type="text" id="new-task" placeholder="Add to your list..." />
-        <!-- <button type="submit">Add Task</button> -->
+        <button type="submit"><i class="uil uil-enter"></i></button>
       </form>
       <ul id="task-list"></ul>
 
+      <hr />
       <p>Clear all completed.</p>
     </div>
   </body>
