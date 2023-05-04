@@ -135,10 +135,15 @@ input[type='checkbox']:checked + span {
   text-decoration: line-through;
 }
 
-p {
+a {
+  display: block;
   text-align: center;
   margin: 2rem auto 0;
   font-size: 1.3rem;
   font-weight: 400;
   color: #999;
+}
+
+a:hover {
+  text-decoration: underline;
 }
