@@ -23,18 +23,6 @@ body {
   box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
 }
 
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  color: #999;
-  font-size: 1rem;
-  padding: 1rem 0;
-}
-
 hr {
   border-bottom: 1px solid #ddd;
   width: 100%;
@@ -56,11 +44,37 @@ form {
   border: none;
 }
 
+#task-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: #999;
+  font-size: 1.1rem;
+  padding: 1rem 0;
+}
+
+i.uil-ellipsis-v {
+  margin-left: auto;
+}
+
 input[type='text'] {
   flex: 1;
   padding: 10px;
   background: transparent;
   margin-left: -1.3rem;
+  color: #999;
+  font-style: italic;
+  font-size: 1.2rem;
 }
 
 #new-task::placeholder {
@@ -69,13 +83,44 @@ input[type='text'] {
   font-size: 1.2rem;
 }
 
+.delete-button {
+  background-color: transparent;
+  border: none;
+  color: #c0392b;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  padding: 0;
+}
+
+li:hover .delete-button {
+  display: block;
+}
+
+i {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title i {
+  color: #999;
+}
+
 button[type='submit'] {
-  padding: 10px;
-  background-color: #4caf50;
   border: none;
   border-radius: 0 5px 5px 0;
-  color: white;
+  background-color: transparent;
   cursor: pointer;
+  outline: none;
+  margin-left: 0.5rem;
+  color: #999;
 }
 
 span {

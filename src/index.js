@@ -4,55 +4,127 @@ const taskList = document.getElementById('task-list');
 const newTask = document.getElementById('new-task');
 const form = document.querySelector('form');
 
-// Tasks array
-const tasks = [
-  { description: 'Check email', completed: false, index: 0 },
-  { description: 'Finish coding challenge', completed: true, index: 1 },
-  { description: 'Workout', completed: false, index: 2 },
-  { description: 'Complete Todo list project', completed: false, index: 3 },
-];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-function createTaskListItemElement(task) {
-  // Create the list item element
+let editTaskDescription;
+let deleteTask;
+
+const saveTasks = () => {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+const createTaskLists = (task) => {
+  const deleteButton = document.createElement('button');
   const listItemElement = document.createElement('li');
+  const iconElement = document.createElement('i');
+  const descriptionElement = document.createElement('span');
 
-  // Create the checkbox element
   const checkboxElement = document.createElement('input');
   checkboxElement.type = 'checkbox';
   checkboxElement.checked = task.completed;
 
-  // Add an event listener to the checkbox to update the task object when checked
   checkboxElement.addEventListener('change', () => {
     task.completed = checkboxElement.checked;
+    saveTasks();
+
+    // Check if the checkbox is now checked
+    if (checkboxElement.checked) {
+      deleteButton.style.display = 'block';
+      iconElement.style.display = 'none';
+      listItemElement.style.display = 'flex';
+      listItemElement.style.justifyContent = 'flex-start';
+      deleteButton.style.marginLeft = 'auto';
+    } else {
+      deleteButton.style.display = 'none';
+      iconElement.style.display = 'block';
+      descriptionElement.style.color = '#999';
+    }
   });
 
-  // Create the description element
-  const descriptionElement = document.createElement('span');
   descriptionElement.textContent = task.description;
 
-  // Append the checkbox and description elements to the list item
+  descriptionElement.addEventListener('click', () => {
+    editTaskDescription(task);
+  });
+
   listItemElement.appendChild(checkboxElement);
   listItemElement.appendChild(descriptionElement);
 
-  // Create a horizontal line element
-  const hrElement = document.createElement('hr');
+  iconElement.classList.add('uil', 'uil-ellipsis-v');
+  iconElement.addEventListener('click', () => {
+    editTaskDescription(task);
+  });
+  listItemElement.appendChild(iconElement);
 
-  listItemElement.appendChild(hrElement);
+  deleteButton.innerHTML = '<i class="uil uil-trash"></i>';
+  deleteButton.classList.add('delete-button');
+  deleteButton.style.display = 'none';
+
+  deleteButton.addEventListener('click', () => {
+    deleteTask(task.index);
+  });
+
+  listItemElement.appendChild(deleteButton);
+
   return listItemElement;
-}
+};
 
-// Create a new tasks
+const updateTaskIndexes = () => {
+  tasks.forEach((task, index) => {
+    task.index = index;
+  });
+};
+
+const renderTaskList = () => {
+  taskList.innerHTML = '';
+
+  tasks
+    .sort((task1, task2) => task1.index - task2.index)
+    .forEach((task) => {
+      const listItemElement = createTaskLists(task);
+      taskList.appendChild(listItemElement);
+    });
+};
+
+deleteTask = (index) => {
+  tasks = tasks.filter((task) => task.index !== index);
+  updateTaskIndexes();
+  saveTasks();
+  renderTaskList();
+};
+
+editTaskDescription = (task) => {
+  const inputElement = document.createElement('input');
+  inputElement.type = 'text';
+  inputElement.value = task.description;
+  inputElement.classList.add('edit-input');
+
+  inputElement.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      task.description = inputElement.value.trim();
+      saveTasks();
+      renderTaskList();
+    } else if (event.key === 'Escape') {
+      renderTaskList();
+    }
+  });
+
+  const listItemElement = taskList.children[task.index];
+  listItemElement.replaceChild(inputElement, listItemElement.children[1]);
+  inputElement.select();
+};
+
 function addNewTask(description) {
   const taskIndex = tasks.length;
 
   const task = { description, completed: false, index: taskIndex };
   tasks.push(task);
+  saveTasks();
 
-  const listItemElement = createTaskListItemElement(task);
+  const listItemElement = createTaskLists(task);
   taskList.appendChild(listItemElement);
 }
 
-// Add an event listener to the form to handle task creation
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -61,21 +133,9 @@ form.addEventListener('submit', (event) => {
     return;
   }
 
-  // Add the new task and reset the input field
   addNewTask(taskDescription);
   newTask.value = '';
 });
-
-function renderTaskList() {
-  taskList.innerHTML = '';
-
-  tasks
-    .sort((task1, task2) => task1.index - task2.index)
-    .forEach((task) => {
-      const listItemElement = createTaskListItemElement(task);
-      taskList.appendChild(listItemElement);
-    });
-}
 
 renderTaskList();
 window.addEventListener('load', renderTaskList);
