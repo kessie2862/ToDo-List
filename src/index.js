@@ -1,4 +1,5 @@
 import './index.css';
+import { markAsCompleted, markAsIncomplete } from './status.js';
 
 const taskList = document.getElementById('task-list');
 const newTask = document.getElementById('new-task');
@@ -24,7 +25,11 @@ const createTaskLists = (task) => {
   checkboxElement.checked = task.completed;
 
   checkboxElement.addEventListener('change', () => {
-    task.completed = checkboxElement.checked;
+    if (checkboxElement.checked) {
+      markAsCompleted(task);
+    } else {
+      markAsIncomplete(task);
+    }
     saveTasks();
 
     // Check if the checkbox is now checked
@@ -124,6 +129,20 @@ function addNewTask(description) {
   const listItemElement = createTaskLists(task);
   taskList.appendChild(listItemElement);
 }
+
+// Clearing completed
+const clearCompletedTasks = () => {
+  tasks = tasks.filter((task) => !task.completed);
+  updateTaskIndexes();
+  saveTasks();
+  renderTaskList();
+};
+
+const clearCompleted = document.querySelector('a');
+clearCompleted.addEventListener('click', (event) => {
+  event.preventDefault();
+  clearCompletedTasks();
+});
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
