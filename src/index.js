@@ -81,18 +81,23 @@ const updateTaskIndexes = () => {
 };
 
 const renderTaskList = () => {
-  taskList.innerHTML = '';
+  if (taskList !== null) {
+    taskList.innerHTML = '';
 
-  tasks
-    .sort((task1, task2) => task1.index - task2.index)
-    .forEach((task) => {
-      const listItemElement = createTaskLists(task);
-      taskList.appendChild(listItemElement);
-    });
+    tasks
+      .sort((task1, task2) => task1.index - task2.index)
+      .forEach((task) => {
+        const listItemElement = createTaskLists(task);
+        taskList.appendChild(listItemElement);
+      });
+  }
 };
 
 deleteTask = (index) => {
-  tasks = tasks.filter((task) => task.index !== index);
+  tasks.splice(index, 1);
+  tasks.forEach((task, i) => {
+    task.index = i;
+  });
   updateTaskIndexes();
   saveTasks();
   renderTaskList();
@@ -126,8 +131,10 @@ function addNewTask(description) {
   tasks.push(task);
   saveTasks();
 
-  const listItemElement = createTaskLists(task);
-  taskList.appendChild(listItemElement);
+  if (taskList) {
+    const listItemElement = createTaskLists(task);
+    taskList.appendChild(listItemElement);
+  }
 }
 
 // Clearing completed
@@ -138,23 +145,30 @@ const clearCompletedTasks = () => {
   renderTaskList();
 };
 
-const clearCompleted = document.querySelector('a');
-clearCompleted.addEventListener('click', (event) => {
-  event.preventDefault();
-  clearCompletedTasks();
-});
+const clearCompleted = document.getElementById('clear-completed');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+if (clearCompleted) {
+  clearCompleted.addEventListener('click', (event) => {
+    event.preventDefault();
+    clearCompletedTasks();
+  });
+}
 
-  const taskDescription = newTask.value;
-  if (taskDescription.trim() === '') {
-    return;
-  }
+if (form) {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-  addNewTask(taskDescription);
-  newTask.value = '';
-});
+    const taskDescription = newTask.value;
+    if (taskDescription.trim() === '') {
+      return;
+    }
+
+    addNewTask(taskDescription);
+    newTask.value = '';
+  });
+}
 
 renderTaskList();
 window.addEventListener('load', renderTaskList);
+
+module.exports = { tasks, addNewTask, deleteTask };
