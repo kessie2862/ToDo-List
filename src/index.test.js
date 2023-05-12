@@ -42,7 +42,7 @@ describe('Task list app', () => {
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'tasks',
-        JSON.stringify(tasks)
+        JSON.stringify(tasks),
       );
     });
   });
@@ -65,7 +65,7 @@ describe('Task list app', () => {
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'tasks',
-        JSON.stringify(tasks)
+        JSON.stringify(tasks),
       );
     });
   });
@@ -102,13 +102,13 @@ describe('Task list app', () => {
 
       inputElementInDom.value = newDescription;
       inputElementInDom.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'Enter' })
+        new KeyboardEvent('keydown', { key: 'Enter' }),
       );
 
       expect(task.description).toBe(newDescription);
       expect(localStorage.setItem).toHaveBeenCalledWith(
         'tasks',
-        JSON.stringify(tasks)
+        JSON.stringify(tasks),
       );
     });
   });
@@ -151,8 +151,7 @@ describe('Task completion status', () => {
     const storedTasksJSON = localStorage.getItem('tasks');
     const storedTasks = storedTasksJSON ? JSON.parse(storedTasksJSON) : [];
 
-    const updatedTaskCompleted =
-      storedTasks.length > 0 ? storedTasks[0].completed : true;
+    const updatedTaskCompleted = storedTasks.length > 0 ? storedTasks[0].completed : true;
 
     expect(updatedTaskCompleted).toBe(true);
   });
@@ -167,8 +166,7 @@ describe('Task completion status', () => {
     const storedTasksJSON = localStorage.getItem('tasks');
     const storedTasks = storedTasksJSON ? JSON.parse(storedTasksJSON) : [];
 
-    const updatedTaskCompleted =
-      storedTasks.length > 0 ? storedTasks[0].completed : false;
+    const updatedTaskCompleted = storedTasks.length > 0 ? storedTasks[0].completed : false;
 
     expect(updatedTaskCompleted).toBe(false);
   });

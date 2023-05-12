@@ -1,1 +1,1 @@
-testEnvironment: 'jsdom';
+'jsdom';
