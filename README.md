@@ -150,7 +150,7 @@ If you like this project, follow me to see all my projects in the future
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-Kudos to Microverse for the opportunity to learn software development.
+Kudos to **Microverse** for the opportunity to learn software development.
 
 <!-- LICENSE -->
 
