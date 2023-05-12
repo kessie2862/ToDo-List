@@ -1,11 +1,11 @@
-import './index.css';
+// import './index.css';
 import { markAsCompleted, markAsIncomplete } from './status.js';
 
 const taskList = document.getElementById('task-list');
 const newTask = document.getElementById('new-task');
 const form = document.querySelector('form');
 
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 let editTaskDescription;
 let deleteTask;
@@ -103,7 +103,7 @@ deleteTask = (index) => {
   renderTaskList();
 };
 
-editTaskDescription = (task) => {
+editTaskDescription = (task, taskList) => {
   const inputElement = document.createElement('input');
   inputElement.type = 'text';
   inputElement.value = task.description;
@@ -139,7 +139,12 @@ function addNewTask(description) {
 
 // Clearing completed
 const clearCompletedTasks = () => {
-  tasks = tasks.filter((task) => !task.completed);
+  tasks.forEach((task, index) => {
+    if (task.completed) {
+      tasks.splice(index, 1);
+      index -= 1;
+    }
+  });
   updateTaskIndexes();
   saveTasks();
   renderTaskList();
@@ -171,4 +176,12 @@ if (form) {
 renderTaskList();
 window.addEventListener('load', renderTaskList);
 
-module.exports = { tasks, addNewTask, deleteTask };
+module.exports = {
+  tasks,
+  addNewTask,
+  deleteTask,
+  editTaskDescription,
+  clearCompletedTasks,
+  markAsCompleted,
+  markAsIncomplete,
+};
