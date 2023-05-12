@@ -159,17 +159,17 @@ describe('Task completion status', () => {
 
   // Mark tasks as InCompleted
 
-  // test('should mark task as incompleted', () => {
-  //   const tasks = [{ description: 'Task 1', completed: true, index: 0 }];
-  //   localStorage.setItem('tasks', JSON.stringify(tasks));
+  test('should mark task as incompleted', () => {
+    const tasks = [{ description: 'Task 1', completed: true, index: 0 }];
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 
-  //   markAsIncomplete(tasks);
-  //   const storedTasksJSON = localStorage.getItem('tasks');
-  //   const storedTasks = storedTasksJSON ? JSON.parse(storedTasksJSON) : [];
+    markAsIncomplete(tasks);
+    const storedTasksJSON = localStorage.getItem('tasks');
+    const storedTasks = storedTasksJSON ? JSON.parse(storedTasksJSON) : [];
 
-  //   const updatedTaskCompleted =
-  //     storedTasks.length > 0 ? storedTasks[0].completed : false;
+    const updatedTaskCompleted =
+      storedTasks.length > 0 ? storedTasks[0].completed : false;
 
-  //   expect(updatedTaskCompleted).toBe(false);
-  // });
+    expect(updatedTaskCompleted).toBe(false);
+  });
 });
