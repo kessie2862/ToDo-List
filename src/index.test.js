@@ -1,8 +1,6 @@
 import 'jsdom-global/register.js';
 import 'jest-localstorage-mock';
 
-// import './index.css';
-
 // importing functions I want to test
 const {
   tasks,

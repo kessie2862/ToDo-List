@@ -1,4 +1,4 @@
-// import './index.css';
+import './index.css';
 import { markAsCompleted, markAsIncomplete } from './status.js';
 
 const taskList = document.getElementById('task-list');
