@@ -1,4 +1,4 @@
-# ToDo-List 
+# ToDo-List. 
 
 <a name="readme-top"></a>
 
